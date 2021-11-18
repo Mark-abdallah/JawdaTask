@@ -1,0 +1,19 @@
+﻿{
+  "culture": "ar",
+  "texts": {
+    "Menu:Home": "الرئيسية",
+    "Welcome": "مرحبا",
+    "LongWelcomeMessage": "مرحبا بكم في التطبيق. هذا مشروع بدء تشغيل يعتمد على إطار عمل ABP. لمزيد من المعلومات ، يرجى زيارة abp.io.",
+    "Image": "الصورة",
+    "Category": "التصنيف",
+    "Name": "الاسم",
+    "Stock": "متاح",
+    "Price": "السعر",
+    "Laptops": "حاسب محمول",
+    "Mobiles": "الهواتف",
+    "Products": "المنتجات",
+    "NewProduct": "اضافة منتج",
+    "Product_Task": "معرض المنتجات"
+
+  }
+}

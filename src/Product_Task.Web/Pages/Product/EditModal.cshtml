@@ -1,0 +1,27 @@
+﻿@page
+@using Product_Task.Localization
+@using Product_Task.Web.Pages.Product
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model EditModalModel
+@inject IStringLocalizer<Product_TaskResource> L
+@{
+    Layout = null;
+}
+
+
+ <form asp-page="/Product/EditModal" enctype="multipart/form-data">
+    <abp-modal>
+        <abp-modal-header title="@L["Update"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-input asp-for="Product.Id"/>
+             <abp-input asp-for="Product.Name"/>
+                <select class="form-control" asp-for="Product.CategoryId" asp-items="ViewBag.Categories"></select>
+            <abp-input id="updateImageInput" asp-for="Product.Image" class="d-none" onchange="readURL(this,'updateEmptyImage');" />
+             <img onClick="openImageInput('updateImageInput')" id="updateEmptyImage" class="avatar"  src="@Url.Content(ViewBag.selectedProductImage)" height="60px" width="60px">
+             <abp-input asp-for="Product.Price"/>
+             <abp-input asp-for="Product.Stock"/>
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+    </form>

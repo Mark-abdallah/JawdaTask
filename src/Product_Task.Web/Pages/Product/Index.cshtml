@@ -1,0 +1,47 @@
+﻿@page
+@using Product_Task.Localization
+@using Product_Task.Permissions
+@using Product_Task.Web.Pages.Product
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Microsoft.Extensions.Localization
+@model IndexModel
+@inject IStringLocalizer<Product_TaskResource> L
+@inject IAuthorizationService AuthorizationService
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.MenuItemName = "Product_Task";
+}
+@section scripts
+{
+    <abp-script src="/Pages/Product/Index.js"/>
+}
+<abp-card>
+    <abp-card-header>
+        <form asp-page="/Product/Index" >
+         <select id="categoryList" class="form-control m-3" onChange="filterTable()" >
+           @foreach(var category in ViewBag.Categories){
+                <option>@category.Text</option>
+           }
+         </select>
+         </form> 
+        <abp-row>
+           
+            <abp-column size-md="_6">
+                <abp-card-title>@L["Products"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                @if (await AuthorizationService.IsGrantedAsync(Product_TaskPermissions.Products.Create))
+                {
+                    <abp-button id="NewProductButton"
+                                text="@L["NewProduct"].Value"
+                                icon="plus"
+                                button-type="Primary"/>
+                }
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="ProductsTable"></abp-table>
+    </abp-card-body>
+</abp-card>
